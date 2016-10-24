@@ -115,7 +115,7 @@
       
       signupbutton.addEventListener("click", function() {
           signuperror.style.display = "none";
-          if ((signupusername.value.length >= 3 && signupusername.value.length <= 16) && (signuppassword.value.length >= 3 && signuppassword.value.length <= 16) && signuppassword.innerText == signupconfirmpassword.innerText) {
+          if ((signupusername.value.length >= 3 && signupusername.value.length <= 16) && (signuppassword.value.length >= 3 && signuppassword.value.length <= 16) && signuppassword.value == signupconfirmpassword.value) {
               signupusername.disabled = true;
               signuppassword.disabled = true;
               signupconfirmpassword.disabled = true;
