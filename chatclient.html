@@ -82,7 +82,7 @@
       });
       
       signinbutton.addEventListener("click", function() {
-          if ((signinusername.innerText.length > 0 && signinusername.innerText.length <= 16) /*&& (signuppassword.innerText.length > 0 && signuppassword.innerText.length <= 16)*/) {
+          if ((signinusername.value.length > 0 && signinusername.value.length <= 16) /*&& (signinpassword.value.length > 0 && signinpassword.value.length <= 16)*/) {
               
               signinusername.disabled = true;
               signinpassword.disabled = true;
@@ -97,7 +97,7 @@
       });
       
       signupbutton.addEventListener("click", function() {
-          if ((signinusername.innerText.length > 0 && signinusername.innerText.length <= 16) /*&& (signuppassword.innerText.length > 0 && signuppassword.innerText.length <= 16)*/ /*&& signuppassword.innerText == signupconfirmpassword.innerText*/) {
+          if ((signupusername.value.length > 0 && signupusername.value.length <= 16) /*&& (signuppassword.value.length > 0 && signuppassword.value.length <= 16)*/ /*&& signuppassword.innerText == signupconfirmpassword.innerText*/) {
               
               signupusername.disabled = true;
               signuppassword.disabled = true;
