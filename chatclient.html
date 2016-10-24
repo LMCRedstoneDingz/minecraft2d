@@ -99,6 +99,9 @@
               
               signin.style.display = "none";
               messages.style.display = "block";
+              
+              message.disabled = false;
+              sendbutton.disabled = false;
           } else {
             if (signinusername.value.length < 3) {
                 signinerror.innerText = "Error: Username must be at least 3 characters long.";
@@ -126,6 +129,9 @@
               
               signup.style.display = "none";
               messages.style.display = "block";
+              
+              message.disabled = false;
+              sendbutton.disabled = false;
           } else {
             if (signupusername.value.length < 3) {
                 signuperror.innerText = "Error: Username must be at least 3 characters long.";
