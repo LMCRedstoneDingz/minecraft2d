@@ -12,15 +12,17 @@
     </div>
     <div id="signin">
       <p>Sign In</p>
+      <p id="signinerror">Error: Unknown</p>
       <p>Username: <input type="text" id="signinusername" disabled></p>
       <p>Password: <input type="password" id="signinpassword" disabled></p>
       <input type="button" id="signinbutton" value="Sign in" disabled>
     </div>
     <div id="signup">
       <p>Sign Up</p>
+      <p id="signuperror">Error: Unknown</p>
       <p>Username: <input type="text" id="signupusername" disabled></p>
       <p>Password: <input type="password" id="signuppassword" disabled></p>
-      <p>Confirm Password: <input type="text" id="signupconfirmpassword" disabled></p>
+      <p>Confirm Password: <input type="password" id="signupconfirmpassword" disabled></p>
       <input type="button" id="signupbutton" value="Sign up" disabled>
     </div>
     <div id="option">
@@ -40,9 +42,11 @@
       
       var message = document.getElementById("message"),
           sendbutton = document.getElementById("sendbutton"),
+          signinerror = document.getElementById("signinerror"),
           signinusername = document.getElementById("signinusername"),
           signinpassword = document.getElementById("signinpassword"),
           signinbutton = document.getElementById("signinbutton"),
+          signuperror = document.getElementById("signuperror"),
           signupusername = document.getElementById("signupusername"),
           signuppassword = document.getElementById("signuppassword"),
           signupconfirmpassword = document.getElementById("signupconfirmpassword"),
@@ -66,6 +70,7 @@
           
           option.style.display = "none";
           signin.style.display = "block";
+          signinerror.style.display = "none";
       });
       
       optionsignupbutton.addEventListener("click", function() {
@@ -79,11 +84,12 @@
           
           option.style.display = "none";
           signup.style.display = "block";
+          signuperror.style.display = "none";
       });
       
       signinbutton.addEventListener("click", function() {
-          if ((signinusername.value.length > 0 && signinusername.value.length <= 16) /*&& (signinpassword.value.length > 0 && signinpassword.value.length <= 16)*/) {
-              
+        signinerror.style.display = "none";  
+        if ((signinusername.value.length >= 3 && signinusername.value.length <= 16) && (signinpassword.value.length > 0 && signinpassword.value.length <= 16)) {
               signinusername.disabled = true;
               signinpassword.disabled = true;
               signinbutton.disabled = true;
@@ -93,12 +99,23 @@
               
               signin.style.display = "none";
               messages.style.display = "block";
+          } else {
+            if (signinusername.value.length < 3) {
+                signinerror.innerText = "Error: Username must be at least 3 characters long.";
+            } else if (signinusername.value.length > 16) {
+                signinerror.innerText = "Error: Username must be at most 16 characters long.");
+            } else if (signinpassword.value.length < 3) {
+                signinerror.innerText = "Error: Password must be at least 3 characters long.");
+            } else if (signinpassword.value.length > 16) {
+                signinerror.innerText = "Error: Password must be at most 16 characters long.");
+            }
+            signinerror.style.display = "block";
           }
       });
       
       signupbutton.addEventListener("click", function() {
-          if ((signupusername.value.length > 0 && signupusername.value.length <= 16) /*&& (signuppassword.value.length > 0 && signuppassword.value.length <= 16)*/ /*&& signuppassword.innerText == signupconfirmpassword.innerText*/) {
-              
+          signuperror.style.display = "none";
+          if ((signupusername.value.length >= 3 && signupusername.value.length <= 16) && (signuppassword.value.length > 0 && signuppassword.value.length <= 16) && signuppassword.innerText == signupconfirmpassword.innerText) {
               signupusername.disabled = true;
               signuppassword.disabled = true;
               signupconfirmpassword.disabled = true;
@@ -107,8 +124,21 @@
               username = signupusername.innerText;
               password = signuppassword.innerText;
               
-              signupstyle.display = "none";
+              signup.style.display = "none";
               messages.style.display = "block";
+          } else {
+            if (signupusername.value.length < 3) {
+                signuperror.innerText = "Error: Username must be at least 3 characters long.";
+            } else if (signupusername.value.length > 16) {
+                signuperror.innerText = "Error: Username must be at most 16 characters long.");
+            } else if (signuppassword.value.length < 3) {
+                signuperror.innerText = "Error: Password must be at least 3 characters long.");
+            } else if (signuppassword.value.length > 16) {
+                signuperror.innerText = "Error: Password must be at most 16 characters long.");
+            } else if (signuppassword.value != signupconfirmpassword.value) {
+                signuperror.innerText = "Error: Passwords don't match.");
+            }
+            signuperror.style.display = "block";
           }
       });
     </script>
