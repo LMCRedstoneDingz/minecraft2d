@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat Client</title>
+    <link rel="stylesheet" href="chatclient.css">
+  </head>
+  <body>
+    <div id="messages">
+      <textarea readonly cols=50 rows=4></textarea>
+      <input type="text" id="message" disabled>
+      <input type="button" id="sendbutton" value="Send" disabled>
+    </div>
+    <div id="signin">
+      <p>Sign In</p>
+      <p>Username: <input type="text" id="signinusername" disabled></p>
+      <p>Password: <input type="text" id="signinpassword" disabled></p>
+      <input type="button" id="signinbutton" value="Sign in" disabled>
+    </div>
+    <div id="signup">
+      <p>Sign Up</p>
+      <p>Username: <input type="text" id="signupusername" disabled></p>
+      <p>Password: <input type="text" id="signuppassword" disabled></p>
+      <input type="button" id="signinbutton" value="Sign up" disabled>
+    </div>
+    <div id="option">
+      <input type="button" id="signinbutton" value="Sign in" disabled>
+      <input type="button" id="signupbutton" value="Sign up" disabled>
+    </div>
+    <script>
+      var messages = document.getElementById("messages"),
+          signin = document.getElementById("signin"),
+          signup = document.getElementById("signup"),
+          option = document.getElementById("option");
+      
+      messages.style.display = "none";
+      signin.style.display = "none";
+      signup.style.display = "none";
+      signup.style.display = "block";
+      
+      var message = document.getElementById("message"),
+          sendbutton = document.getElementById("sendbutton"),
+          signinusername = document.getElementById("signinusername"),
+          signinpassword = document.getElementById("signinpassword"),
+          signinbutton = document.getElementById("signinbutton"),
+          signupusername = document.getElementById("signupusername"),
+          signuppassword = document.getElementById("signuppassword"),
+          signupconfirmpassword = document.getElementById("signupconfirmpassword"),
+          signupbutton = document.getElementById("signupbutton"),
+          optionsigninbutton = document.getElementById("signin"),
+          optionsignupbutton = document.getElementById("signup");
+      
+      var username = "",
+          password = "";
+      
+      optionsigninbutton.disabled = false;
+      optionsignupbutton.disabled = false;
+      
+      optionsigninbutton.addEventListener("click", function() {
+          optionsigninbutton.disabled = true;
+          optionsignupbutton.disabled = true;
+          
+          signinusername.disabled = false;
+          signinpassword.disabled = false;
+          signinbutton.disabled = false;
+          
+          option.style.display = "none";
+          signin.style.display = "block";
+      });
+      
+      optionsignupbutton.addEventListener("click", function() {
+          optionsigninbutton.disabled = true;
+          optionsignupbutton.disabled = true;
+          
+          signupusername.disabled = false;
+          signuppassword.disabled = false;
+          signupconfirmpassword.disabled = false;
+          signupbutton.disabled = false;
+          
+          option.style.display = "none";
+          signup.style.display = "block";
+      });
+      
+      signinbutton.addEventListener("click", function() {
+          if ((signinusername.innerText.length > 0 && signinusername.innerText.length <= 16) /*&& (signuppassword.innerText.length > 0 && signuppassword.innerText.length <= 16)*/) {
+              
+              signinusername.disabled = true;
+              signinpassword.disabled = true;
+              signinbutton.disabled = true;
+              
+              username = signinusername.innerText;
+              password = signinpassword.innerText;
+              
+              signin.style.display = "none";
+              messages.style.display = "block";
+          }
+      });
+      
+      signupbutton.addEventListener("click", function() {
+          if ((signinusername.innerText.length > 0 && signinusername.innerText.length <= 16) /*&& (signuppassword.innerText.length > 0 && signuppassword.innerText.length <= 16)*/ /*&& signuppassword.innerText == signupconfirmpassword.innerText*/) {
+              
+              signupusername.disabled = true;
+              signuppassword.disabled = true;
+              signupconfirmpassword.disabled = true;
+              signupbutton.disabled = true;
+              
+              username = signupusername.innerText;
+              password = signuppassword.innerText;
+              
+              signupstyle.display = "none";
+              messages.style.display = "block";
+          }
+      });
+  </body>
+</html>
