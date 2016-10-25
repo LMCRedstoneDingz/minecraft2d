@@ -6,7 +6,7 @@
   </head>
   <body>
     <div id="messages">
-      <textarea readonly cols=50 rows=8></textarea>
+      <textarea id="messagesbox" readonly cols=50 rows=8></textarea>
       <p><input type="text" id="message" disabled> <input type="button" id="sendbutton" value="Send" disabled></p>
     </div>
     <div id="signin">
@@ -39,7 +39,8 @@
       signup.style.display = "none";
       option.style.display = "block";
       
-      var message = document.getElementById("message"),
+      var messagesbox = document.getElementById("messagesbox"),
+          message = document.getElementById("message"),
           sendbutton = document.getElementById("sendbutton"),
           signinerror = document.getElementById("signinerror"),
           signinusername = document.getElementById("signinusername"),
@@ -148,11 +149,14 @@
       });
       
       message.addEventListener("keydown", function(event) {
-          console.log(event);
+          if (event.key == "enter") {
+            messagesbox.value += "\n"+username+": "+message.value;
+            message.value = "";
+          }
       });
       
       sendbutton.addEventListener("click", function() {
-          console.log("SEND: \""+username+": "+message.value+"\";");
+          messagesbox.value += "\n"+username+": "+message.value;
           message.value = "";
       });
     </script>
