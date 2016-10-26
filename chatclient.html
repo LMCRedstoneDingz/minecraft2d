@@ -3,6 +3,7 @@
   <head>
     <title>Chat Client</title>
     <link rel="stylesheet" href="chatclient.css">
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   </head>
   <body>
     <div id="messages">
@@ -28,16 +29,22 @@
       <input type="button" id="optionsigninbutton" value="Sign in" disabled>
       <input type="button" id="optionsignupbutton" value="Sign up" disabled>
     </div>
+    <div id="connect">
+      <p>IP: <input type="text" id="connectip" disabled></p>
+      <p>Port: <input type="number" id="connectport" disabled></p>
+      <input type="button" id="connectbutton" value="Connect" disabled>
     <script>
       var messages = document.getElementById("messages"),
           signin = document.getElementById("signin"),
           signup = document.getElementById("signup"),
-          option = document.getElementById("option");
+          option = document.getElementById("option"),
+          connect = document.getElementById("connect");
       
       messages.style.display = "none";
       signin.style.display = "none";
       signup.style.display = "none";
-      option.style.display = "block";
+      option.style.display = "none";
+      connect.style.display = "block";
       
       var messagesbox = document.getElementById("messagesbox"),
           message = document.getElementById("message"),
@@ -52,13 +59,25 @@
           signupconfirmpassword = document.getElementById("signupconfirmpassword"),
           signupbutton = document.getElementById("signupbutton"),
           optionsigninbutton = document.getElementById("optionsigninbutton"),
-          optionsignupbutton = document.getElementById("optionsignupbutton");
+          optionsignupbutton = document.getElementById("optionsignupbutton"),
+          connectip = document.getElementById("connectip"),
+          connectport = document.getElementById("connectport"),
+          connectbutton = document.getElementById("connectbutton");
       
       var username = "",
           password = "";
       
-      optionsigninbutton.disabled = false;
-      optionsignupbutton.disabled = false;
+      connectip.disabled = false;
+      connectport.disabled = false;
+      connectbutton.disabled = false;
+      
+      connectbutton.addEventListener("click", function() {
+          connect.style.display = "none";
+          option.style.display = "block";
+          
+          optionsigninbutton.disabled = false;
+          optionsignupbutton.disabled = false;
+      });
       
       optionsigninbutton.addEventListener("click", function() {
           optionsigninbutton.disabled = true;
