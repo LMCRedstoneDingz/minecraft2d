@@ -1,5 +1,11 @@
-var http = require("http").createServer();
+var http = require("http").createServer(handler);
 var io = require("socket.io")(http);
+
+function handler(req, res) {
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*" /*"Origin, X-Requested-With, Content-Type, Accept"*/);
+});
 
 io.on("connection", function(socket) {
   // Socket Joined
