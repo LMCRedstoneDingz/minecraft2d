@@ -4,7 +4,8 @@ var io = require("socket.io")(http);
 function handler(req, res) {
   res.statusCode = 200;
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*" /*"Origin, X-Requested-With, Content-Type, Accept"*/);
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.end(res.statusCode);
 });
 
 io.on("connection", function(socket) {
